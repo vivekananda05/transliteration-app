@@ -1,0 +1,118 @@
+/* ===== App Background ===== */
+.stApp, .main, .block-container {
+    background-color: #f5f5dc !important;  /* beige background */
+    color: #333333 !important;
+}
+
+/* ===== Page Title ===== */
+h1 {
+    text-align: center;
+    color: #000000;    /* shiny black */
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+/* ===== Tabs ===== */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+}
+.stTabs [data-baseweb="tab"] {
+    background-color: #000000 !important;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 18px;
+    font-weight: 600;
+    color: #ffffff !important;
+    border: 1px solid #333;
+    border-bottom: none;
+    transition: all 0.2s ease-in-out;
+}
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+}
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    background-color: #222222 !important;
+    color: #ef6c00 !important;
+    border-bottom: 3px solid #ef6c00;
+    box-shadow: 0px -2px 6px rgba(0,0,0,0.08);
+}
+
+/* ===== Input Boxes ===== */
+.stTextInput > div > div > input {
+    background-color: #000000 !important;   /* black input background */
+    color: #ffffff !important;              /* white text */
+    border: 1px solid #ef6c00 !important;   /* orange border */
+    border-radius: 8px !important;
+    padding: 10px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+}
+/* .stTextInput > div > div > input::placeholder {
+    color: #ef6c00 !important;   /* bright orange */
+ /*   font-weight: 600 !important;
+/*} */
+.stTextInput label {
+    color: #000000 !important;  
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+}
+
+/* ===== Buttons ===== */
+.stButton > button {
+    background-color: #ef6c00 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    border: none !important;
+    transition: background-color 0.2s ease;
+}
+.stButton > button:hover {
+    background-color: #e65100 !important;
+}
+
+/* ===== About Section (always visible, left column) ===== */
+.about-box {
+    background: #ffffff;
+    border-left: 5px solid #ef6c00;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 0.95rem;
+    color: #000000;   /* shiny black text */
+    line-height: 1.5rem;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.about-box h3 {
+    margin-top: 0;
+    color: #ef6c00;   /* keep header orange */
+    font-weight: bold;
+}
+/* ===== Result Boxes ===== */
+.result-box {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 12px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.08);
+    background: #fff4e5;       /* soft orange */
+    color: #e65100;
+    border-left: 5px solid #ef6c00;
+}
+.result-box:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.12);
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    color: #666666;
+    font-size: 0.9rem;
+    margin-top: 30px;
+}
+
