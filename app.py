@@ -129,8 +129,8 @@ except Exception:
 GEMINI_MODEL = "gemini-2.5-flash"
 from google.genai import types
 custom_config = types.GenerateContentConfig(
-    temperature=0.0,
-    top_p=0.9
+    temperature=1.0,
+    top_p=0.8
 )
 
 # ---------------------------
@@ -227,4 +227,5 @@ with tabs[2]:
 
 # Footer
 st.markdown("<div class='footer'>✨ Built with ❤️ using LSTM + Transformer + Gemini ✨</div>", unsafe_allow_html=True)
+
 
