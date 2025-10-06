@@ -225,6 +225,9 @@ with col_about:
 #         st.markdown(f"<div class='result-box gemini'>Gemini Output: {hindi}</div>", unsafe_allow_html=True)
 
 with col_main:
+    # ============================
+    # Tabs with session-state tracking
+    # ============================
     if "active_tab" not in st.session_state:
         st.session_state.active_tab = "🔡 LSTM Model"
 
@@ -238,53 +241,50 @@ with col_main:
     # 🔡 LSTM MODEL TAB
     # ============================
     with tabs[0]:
-        # Keep the tab active if it was last used
-        if st.session_state.active_tab == "🔡 LSTM Model":
-            word = st.text_input("Enter word:", key="lstm_input")
-            if st.button("🚀 Run LSTM", key="btn_lstm", on_click=lambda: set_active_tab("🔡 LSTM Model")):
-                model, decoder_obj, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_len = load_lstm_model()
-                encoded = encode_sequence_lstm(word, src_vocab, max_len)
-                src_tensor = torch.tensor(encoded).unsqueeze(0)
-                greedy_pred = decoder_obj.greedy_decode(src_tensor)
-                beam_pred = decoder_obj.beam_search_decode(src_tensor, beam_width=5)
-
-                st.markdown(
-                    f"<div class='result-box greedy'>Greedy: {decode_sequence_lstm(greedy_pred[1:], tgt_idx2char)}</div>",
-                    unsafe_allow_html=True
-                )
-                st.markdown(
-                    f"<div class='result-box beam'>Beam: {decode_sequence_lstm(beam_pred[1:], tgt_idx2char)}</div>",
-                    unsafe_allow_html=True
-                )
+        word = st.text_input("Enter word:", key="lstm_input")
+        if st.button("🚀 Run LSTM", key="btn_lstm", on_click=lambda: set_active_tab("🔡 LSTM Model")):
+            model, decoder_obj, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_len = load_lstm_model()
+            encoded = encode_sequence_lstm(word, src_vocab, max_len)
+            src_tensor = torch.tensor(encoded).unsqueeze(0)
+            greedy_pred = decoder_obj.greedy_decode(src_tensor)
+            beam_pred = decoder_obj.beam_search_decode(src_tensor, beam_width=5)
+            st.markdown(
+                f"<div class='result-box greedy'>Greedy: {decode_sequence_lstm(greedy_pred[1:], tgt_idx2char)}</div>",
+                unsafe_allow_html=True
+            )
+            st.markdown(
+                f"<div class='result-box beam'>Beam: {decode_sequence_lstm(beam_pred[1:], tgt_idx2char)}</div>",
+                unsafe_allow_html=True
+            )
 
     # ============================
     # 🔠 TRANSFORMER MODEL TAB
     # ============================
     with tabs[1]:
-        if st.session_state.active_tab == "🔠 Transformer Model":
-            word = st.text_input("Enter word:", key="trans_input")
-            if st.button("🚀 Run Transformer", key="btn_trans", on_click=lambda: set_active_tab("🔠 Transformer Model")):
-                model, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_src, max_tgt, decoder = load_transformer_model()
-                greedy = transliterate_greedy(
-                    model, word, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_tgt, "cpu"
-                )
-                beam = decoder.beam_search_decode(word, beam_width=5, max_length=max_tgt)
-
-                st.markdown(f"<div class='result-box greedy'>Greedy: {greedy}</div>", unsafe_allow_html=True)
-                st.markdown(f"<div class='result-box beam'>Beam: {beam}</div>", unsafe_allow_html=True)
+        word = st.text_input("Enter word:", key="trans_input")
+        if st.button("🚀 Run Transformer", key="btn_trans", on_click=lambda: set_active_tab("🔠 Transformer Model")):
+            model, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_src, max_tgt, decoder = load_transformer_model()
+            greedy = transliterate_greedy(
+                model, word, src_vocab, tgt_vocab, src_idx2char, tgt_idx2char, max_tgt, "cpu"
+            )
+            beam = decoder.beam_search_decode(word, beam_width=5, max_length=max_tgt)
+            st.markdown(f"<div class='result-box greedy'>Greedy: {greedy}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='result-box beam'>Beam: {beam}</div>", unsafe_allow_html=True)
 
     # ============================
     # 🤖 GEMINI API TAB
     # ============================
     with tabs[2]:
-        if st.session_state.active_tab == "🤖 Gemini API":
-            word = st.text_input("Enter word:", key="gem_input")
-            if st.button("🚀 Run Gemini", key="btn_gem", on_click=lambda: set_active_tab("🤖 Gemini API")):
-                hindi = gemini_transliterate(word)
-                st.markdown(f"<div class='result-box gemini'>Gemini Output: {hindi}</div>", unsafe_allow_html=True)
+        word = st.text_input("Enter word:", key="gem_input")
+        if st.button("🚀 Run Gemini", key="btn_gem", on_click=lambda: set_active_tab("🤖 Gemini API")):
+            hindi = gemini_transliterate(word)
+            st.markdown(f"<div class='result-box gemini'>Gemini Output: {hindi}</div>", unsafe_allow_html=True)
+
+
 
 # Footer
 st.markdown("<div class='footer'>✨ Built with ❤️ using LSTM + Transformer + Gemini ✨</div>", unsafe_allow_html=True)
+
 
 
 
